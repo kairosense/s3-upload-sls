@@ -2,6 +2,9 @@ import { z } from 'zod'
 
 const preProcessToNum = z.preprocess((val) => Number(val), z.number())
 
+/**
+ * ? Add validations for env configurations
+ */
 const schema = z.object({
   app_env: z.enum(['dev', 'stage', 'uat', 'prod']).default('dev'),
   mysql_host: z.string().default('localhost'),
@@ -14,6 +17,9 @@ const schema = z.object({
 
 type ProcessEnv = Record<keyof z.infer<typeof schema>, string | undefined>
 
+/**
+ * ? Add keys below from process.env
+ */
 const processEnv: ProcessEnv = {
   app_env: process.env.APP_ENV,
   mysql_database: process.env.MYSQL_DBNAME,

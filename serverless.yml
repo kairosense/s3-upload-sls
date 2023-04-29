@@ -1,5 +1,5 @@
 service: sls-template-v2
-frameworkVersion: "3"
+frameworkVersion: '3'
 
 useDotenv: true
 
@@ -32,11 +32,8 @@ custom:
 
 functions:
   users:
-    handler: index.UserController
+    handler: handler.app
     events:
       - http:
           path: /users
           method: GET
-      - http:
-          path: /users
-          method: POST
