@@ -10,11 +10,6 @@ declare global {
     export interface Request {
       api_event?: APIGatewayProxyEvent
       api_context?: Context
-
-      values: {
-        valid: boolean
-        data: unknown
-      }
     }
   }
 }

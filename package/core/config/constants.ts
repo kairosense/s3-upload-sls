@@ -1,6 +1,6 @@
-import { type ENV } from '@core/env'
+import { type env } from '@core/env'
 
-export const constants: Record<typeof ENV.app_env, Record<string, unknown>> = {
+export const constants: Record<typeof env.APP_ENV, Record<string, unknown>> = {
   dev: {},
   prod: {},
   stage: {},

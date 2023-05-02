@@ -3,6 +3,7 @@ import express, { type ErrorRequestHandler } from 'express'
 import { UserRouter } from '@functions/users/router'
 import { sqsHandler } from '@middlewares/sqs'
 import { secureHeaders } from '@middlewares/secure'
+import { bootstrap } from '@core/config/bootstrap'
 
 const app = express()
 
@@ -36,4 +37,4 @@ app.use(((err, _req, res, _next) => {
   })
 }) as ErrorRequestHandler)
 
-export default { app }
+export default { app: bootstrap(app) }
