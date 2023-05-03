@@ -1,14 +1,11 @@
 import { DB } from '@core/db'
 
-export const getUsers = async (id?: number) => {
+export const getUserById = async (id: number) => {
   try {
-    const query = DB.selectFrom('users')
-      .selectAll()
-      .$if(!!id, (qb) => qb.where('id', '=', id!))
-
-    const data = await query.execute()
+    const data = await DB.selectFrom('users').select(['users.email']).where('id', '=', id).executeTakeFirst()
     return data
   } catch (e) {
+    console.log('🚀 ~ file: service.ts:12 ~ getUsers ~ e:', e)
     return null
   }
 }

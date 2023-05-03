@@ -35,5 +35,5 @@ functions:
     handler: handler.app
     events:
       - http:
-          path: /users
+          path: /users/{id}
           method: GET
