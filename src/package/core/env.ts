@@ -8,6 +8,10 @@ export const env = createEnv({
   client: {},
   server: {
     APP_ENV: z.enum(['dev', 'stage', 'uat', 'prod']).default('dev'),
+
+    APP_PORT: preProcessToNum.default(3000),
+    APP_HOST: z.string().default('localhost'),
+
     MYSQL_HOST: z.string().default('localhost'),
     MYSQL_PORT: preProcessToNum.default(3306),
     MYSQL_USER: z.string(),

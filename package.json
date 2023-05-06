@@ -4,8 +4,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "sls offline start --reloadHandler",
-    "package": "sls package",
+    "start:sls": "sls offline start --reloadHandler",
+    "start:node": "tsup src/index.ts --env.NODE_ENV dev --watch --onSuccess \"node dist/index.js\"",
+    "build:sls": "sls package",
+    "build:node": "tsup src/index.ts --env.NODE_ENV dev",
     "lint": "eslint --color --max-warnings 3 --cache --cache-location .eslintcache .",
     "lint:fix": "eslint --fix --color --max-warnings 3 --cache --cache-location .eslintcache ."
   },
@@ -13,18 +15,19 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@t3-oss/env-core": "^0.2.2",
+    "@t3-oss/env-core": "^0.3.1",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "kysely": "^0.24.2",
-    "mysql2": "^3.2.4",
+    "mysql2": "^3.3.0",
     "serverless-http": "^3.2.0",
     "xss": "^1.0.14",
     "zod": "^3.21.4"
   },
   "devDependencies": {
-    "@types/aws-lambda": "^8.10.114",
+    "@types/aws-lambda": "^8.10.115",
     "@types/express": "^4.17.17",
-    "@types/node": "^18.16.3",
+    "@types/node": "^18.16.5",
     "@typescript-eslint/eslint-plugin": "^5.59.2",
     "esbuild": "^0.17.18",
     "eslint": "^8.39.0",
@@ -32,9 +35,11 @@
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-n": "^15.7.0",
     "eslint-plugin-promise": "^6.1.1",
+    "nodemon": "^2.0.22",
     "serverless": "^3.30.1",
-    "serverless-esbuild": "^1.43.1",
+    "serverless-esbuild": "^1.44.0",
     "serverless-offline": "^12.0.4",
+    "tsup": "^6.7.0",
     "typescript": "^5.0.4"
   }
 }
