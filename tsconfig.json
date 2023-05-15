@@ -31,9 +31,10 @@
       "baseUrl": "./",                                     /* Specify the base directory to resolve non-relative module names. */
       "paths": {
         "~/*": ["./*"],
-        "@core/*": ["./src/package/core/*"],
-        "@functions/*": ["./src/package/functions/*"],
-        "@middlewares/*": ["./src/package/middlewares/*"],
+        "~core/*": ["./package/core/*"],
+
+        "@config/*": ["./src/config/*"],
+        "@functions/*": ["./src/functions/*"],
       },                                                   /* Specify a set of entries that re-map imports to additional lookup locations. */
       // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
       // "typeRoots": [],                                 /* Specify multiple folders that act like './node_modules/@types'. */
@@ -107,7 +108,8 @@
     },
     "include": [
       "types/index.d.ts",
-      "./src/**/*"
+      "./src/**/*",
+      "./package/**/*"
     ],
     "exclude": ["./.dist/**/*", "./.esbuild/**/*", "./node_modules/**/*", "./.serverless/**/*"]
   }

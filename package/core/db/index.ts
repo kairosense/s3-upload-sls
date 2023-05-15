@@ -1,7 +1,7 @@
-import { env } from '@core/env'
 import mysql from 'mysql2'
 import { Kysely, MysqlDialect, type LogConfig } from 'kysely'
 
+import { env } from '@config/env'
 import type { UserTable } from './models/users'
 
 export const poolConnection = mysql.createPool({

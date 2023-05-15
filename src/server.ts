@@ -1,9 +1,10 @@
 import express, { type ErrorRequestHandler } from 'express'
 
+import { sqsHandler } from '~core/middlewares/sqs'
+import { secureHeaders } from '~core/middlewares/secure'
+
+import { bootstrap } from '@config/bootstrap'
 import { UserRouter } from '@functions/users/router'
-import { sqsHandler } from '@middlewares/sqs'
-import { secureHeaders } from '@middlewares/secure'
-import { bootstrap } from '@core/config/bootstrap'
 
 const app = express()
 

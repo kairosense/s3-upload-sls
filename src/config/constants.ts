@@ -1,4 +1,4 @@
-import { type env } from '@core/env'
+import { type env } from '@config/env'
 
 export const constants: Record<typeof env.APP_ENV, Record<string, unknown>> = {
   dev: {},
