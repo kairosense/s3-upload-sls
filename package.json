@@ -8,6 +8,7 @@
     "start:node": "tsup src/index.ts --watch --onSuccess \"node dist/index.js\"",
     "build:sls": "sls package",
     "build:node": "tsup src/index.ts",
+    "deploy:sls": "serverless deploy",
     "lint": "eslint --color --max-warnings 3 --cache --cache-location .eslintcache .",
     "lint:fix": "eslint --fix --color --max-warnings 3 --cache --cache-location .eslintcache .",
     "clean": "npx rimraf dist .esbuild .eslintcache",
@@ -17,6 +18,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.363.0",
+    "@aws-sdk/s3-request-presigner": "^3.363.0",
     "@t3-oss/env-core": "^0.3.1",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",

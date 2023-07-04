@@ -1,4 +1,4 @@
-service: sls-template-v2
+service: sls-upload-media
 frameworkVersion: '3'
 
 useDotenv: true
@@ -11,13 +11,18 @@ provider:
   memorySize: 128
   timeout: 10
   logRetentionInDays: 7
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - "s3:Put*"
+            - "s3:Get*"
+          Resource:
+            - arn:aws:s3:::${self:custom.bucket}/*
   environment:
     APP_ENV: ${self:provider.stage}
-    MYSQL_HOST: ${env:MYSQL_HOST_${self:provider.stage}}
-    MYSQL_PORT: ${env:MYSQL_PORT_${self:provider.stage}}
-    MYSQL_USER: ${env:MYSQL_USER_${self:provider.stage}}
-    MYSQL_PASS: ${env:MYSQL_PASS_${self:provider.stage}}
-    MYSQL_DBNAME: ${env:MYSQL_DBNAME_${self:provider.stage}}
+    BUCKETNAME: ${self:custom.bucket}
 
 package:
   individually: true
@@ -27,13 +32,22 @@ plugins:
   - serverless-offline
 
 custom:
+  bucket: upload-${self:provider.stage}-artifacts
   esbuild:
     minify: true
 
 functions:
-  users:
+  upload:
     handler: src/handler.app
     events:
       - http:
-          path: /users/{id}
-          method: GET
+          path: /upload
+          method: POST
+
+resources:
+  Resources:
+    UploadDevArtifacts:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:custom.bucket}
+        AccessControl: Private
