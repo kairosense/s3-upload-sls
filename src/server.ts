@@ -9,8 +9,8 @@ const app = express()
 /**
  * ? Middlewares
  */
-app.use(express.urlencoded({ extended: true, limit: '2' }))
-app.use(express.json({ limit: '5' }))
+app.use(express.urlencoded({ extended: true, limit: '2mb' }))
+app.use(express.json({ limit: '5mb' }))
 app.use(secureHeaders())
 
 /**
@@ -24,8 +24,9 @@ app.post('/finalize', UploadController.finalize)
  * ! Error Handler
  */
 app.use(((err, _req, res, _next) => {
+  console.log('🚀 ~ file: server.ts:27 ~ app.use ~ err:', err)
   res.status(500).send({
-    error: 'Something went wrong',
+    error: 'Something went wrong sss',
     message: err.message
   })
 }) as ErrorRequestHandler)

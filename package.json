@@ -9,6 +9,7 @@
     "build:sls": "sls package",
     "build:node": "tsup src/index.ts",
     "deploy:sls": "serverless deploy",
+    "deploy:sls:function": "serverless deploy function -f ",
     "lint": "eslint --color --max-warnings 3 --cache --cache-location .eslintcache .",
     "lint:fix": "eslint --fix --color --max-warnings 3 --cache --cache-location .eslintcache .",
     "clean": "npx rimraf dist .esbuild .eslintcache",
