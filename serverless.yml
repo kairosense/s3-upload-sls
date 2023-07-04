@@ -41,7 +41,13 @@ functions:
     handler: src/handler.app
     events:
       - http:
-          path: /upload
+          path: /initalize
+          method: POST
+      - http:
+          path: /get-presigned-urls
+          method: POST
+      - http:
+          path: /finalize
           method: POST
 
 resources:
