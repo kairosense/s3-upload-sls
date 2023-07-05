@@ -1,0 +1,200 @@
+{
+	"info": {
+		"_postman_id": "2ef987f6-e9b2-4169-813a-de895c1bd09e",
+		"name": "S3 Lambda Upload - Presigned",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Initalize",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"filename\": \"sample.png\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api}}/{{env}}/initalize",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"{{env}}",
+						"initalize"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2. Get Presigned Url",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fileId\": \"mNMNgeKZkTrSW8Y_2F5AAATON9fIB0yM3uSiUykwKtDjhhvPJZ3ksT.uN6sgk7OK.RRKWDInm7Je9B6QiFpQ70S_DDRXUqjRCNsJpVsUmGtFxOkMrgdppHkoqMs_APXIf.Cfl8zb.08W_9IVJbyCO7.U0lYuRsnr_FyTrENDVvI-\",\r\n    \"fileKey\": \"sample.png\",\r\n    \"parts\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api}}/{{env}}/get-presigned-urls",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"{{env}}",
+						"get-presigned-urls"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3.1 Upload Part 1",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/Dhruv/Pictures/trillectro-by-aaron-campbell-2560×1440.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://upload-dev-artifacts.s3.ap-south-1.amazonaws.com/sample.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIASOIE6RUC3ILSWN6J%2F20230705%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20230705T015739Z&X-Amz-Expires=900&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEKr%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCmFwLXNvdXRoLTEiRjBEAiB%2BEpir8IMB%2FeNJ4boudD7ECAJOr9vHUvT%2B48p8bgH81gIgRUz9ps1jwkMQDyfOl6IsvR%2BOykSOFU83OTrUR6CE5GQqjAMIIxABGgwxNjgwNTA5ODYyNDUiDCOkGS3C2rmZVqv6tirpAr3jq06omOPM8%2FBfAJu4QWMDV5O9oeA66cOiJUmgu5l%2BKsoN6f2cVpIabpoYBo4p20lQB%2BWsr0waHYwkj8amqSHuyQit3kiwYySx4T6%2B0%2F5YHj9ltKtgVWlLpBQwHygKqa%2FYD2jz8OCDOFVJuPCPI49lXjc6Azgh3cuOw9PSHBHFbWCK3u5WuOs3oYyFmdHLPHbWOuKOYEd61LPhmpWDMaLd9aSX9rbaXYMOqBvxaFTapcemYCxndsHQytJewU5mCf8iManBR8H0qZ3ExpDyvgVXFMYeBYHZsh0yRcwgqqs79WetuNzt9WuPjsg6mGA2w4awQsjRPUlA3ffoTfmQWuufxH10P%2FTag6dpaE4PuSuUjbiiYvhZAefkg0L%2F3r408csPUzoqXfyOogVNUkE9FItoJ1aVUcKvA0DptedYFzHjJbExLbCVNZHdzA2DsBuPFKrvGk9h%2BIfSPmJ7b0aBAbhXyJ4bHEvPn0sw6JiTpQY6ngESGhfKD4ZG3uWqlDu6hOALTTNRoxqQ%2BqpBjhr%2Fb1S1YhARdQtU%2FVpfyW4qi0SLUkjAO2MoLL8HXBmrpd%2BUiFUn680lXXnueHcLDQLvjXeE7b38AGMe0JxZ5RIMnxEqVQ2Lv7IFWcX0ZRimpIEwMjGeuWjpijKORuFhStw0JGhnS1oByVW5y4YW1135l%2BM1z5Cn5GCYIDTwxSyy9nOs3w%3D%3D&X-Amz-Signature=9923cb7386103233edc444331aae3fb73975911a7156467e50dfddeb2cb5dff4&X-Amz-SignedHeaders=host&partNumber=1&uploadId=mNMNgeKZkTrSW8Y_2F5AAATON9fIB0yM3uSiUykwKtDjhhvPJZ3ksT.uN6sgk7OK.RRKWDInm7Je9B6QiFpQ70S_DDRXUqjRCNsJpVsUmGtFxOkMrgdppHkoqMs_APXIf.Cfl8zb.08W_9IVJbyCO7.U0lYuRsnr_FyTrENDVvI-&x-id=UploadPart",
+					"protocol": "https",
+					"host": [
+						"upload-dev-artifacts",
+						"s3",
+						"ap-south-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"sample.png"
+					],
+					"query": [
+						{
+							"key": "X-Amz-Algorithm",
+							"value": "AWS4-HMAC-SHA256"
+						},
+						{
+							"key": "X-Amz-Content-Sha256",
+							"value": "UNSIGNED-PAYLOAD"
+						},
+						{
+							"key": "X-Amz-Credential",
+							"value": "ASIASOIE6RUC3ILSWN6J%2F20230705%2Fap-south-1%2Fs3%2Faws4_request"
+						},
+						{
+							"key": "X-Amz-Date",
+							"value": "20230705T015739Z"
+						},
+						{
+							"key": "X-Amz-Expires",
+							"value": "900"
+						},
+						{
+							"key": "X-Amz-Security-Token",
+							"value": "IQoJb3JpZ2luX2VjEKr%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCmFwLXNvdXRoLTEiRjBEAiB%2BEpir8IMB%2FeNJ4boudD7ECAJOr9vHUvT%2B48p8bgH81gIgRUz9ps1jwkMQDyfOl6IsvR%2BOykSOFU83OTrUR6CE5GQqjAMIIxABGgwxNjgwNTA5ODYyNDUiDCOkGS3C2rmZVqv6tirpAr3jq06omOPM8%2FBfAJu4QWMDV5O9oeA66cOiJUmgu5l%2BKsoN6f2cVpIabpoYBo4p20lQB%2BWsr0waHYwkj8amqSHuyQit3kiwYySx4T6%2B0%2F5YHj9ltKtgVWlLpBQwHygKqa%2FYD2jz8OCDOFVJuPCPI49lXjc6Azgh3cuOw9PSHBHFbWCK3u5WuOs3oYyFmdHLPHbWOuKOYEd61LPhmpWDMaLd9aSX9rbaXYMOqBvxaFTapcemYCxndsHQytJewU5mCf8iManBR8H0qZ3ExpDyvgVXFMYeBYHZsh0yRcwgqqs79WetuNzt9WuPjsg6mGA2w4awQsjRPUlA3ffoTfmQWuufxH10P%2FTag6dpaE4PuSuUjbiiYvhZAefkg0L%2F3r408csPUzoqXfyOogVNUkE9FItoJ1aVUcKvA0DptedYFzHjJbExLbCVNZHdzA2DsBuPFKrvGk9h%2BIfSPmJ7b0aBAbhXyJ4bHEvPn0sw6JiTpQY6ngESGhfKD4ZG3uWqlDu6hOALTTNRoxqQ%2BqpBjhr%2Fb1S1YhARdQtU%2FVpfyW4qi0SLUkjAO2MoLL8HXBmrpd%2BUiFUn680lXXnueHcLDQLvjXeE7b38AGMe0JxZ5RIMnxEqVQ2Lv7IFWcX0ZRimpIEwMjGeuWjpijKORuFhStw0JGhnS1oByVW5y4YW1135l%2BM1z5Cn5GCYIDTwxSyy9nOs3w%3D%3D"
+						},
+						{
+							"key": "X-Amz-Signature",
+							"value": "9923cb7386103233edc444331aae3fb73975911a7156467e50dfddeb2cb5dff4"
+						},
+						{
+							"key": "X-Amz-SignedHeaders",
+							"value": "host"
+						},
+						{
+							"key": "partNumber",
+							"value": "1"
+						},
+						{
+							"key": "uploadId",
+							"value": "mNMNgeKZkTrSW8Y_2F5AAATON9fIB0yM3uSiUykwKtDjhhvPJZ3ksT.uN6sgk7OK.RRKWDInm7Je9B6QiFpQ70S_DDRXUqjRCNsJpVsUmGtFxOkMrgdppHkoqMs_APXIf.Cfl8zb.08W_9IVJbyCO7.U0lYuRsnr_FyTrENDVvI-"
+						},
+						{
+							"key": "x-id",
+							"value": "UploadPart"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4. Finalize",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fileId\": \"mNMNgeKZkTrSW8Y_2F5AAATON9fIB0yM3uSiUykwKtDjhhvPJZ3ksT.uN6sgk7OK.RRKWDInm7Je9B6QiFpQ70S_DDRXUqjRCNsJpVsUmGtFxOkMrgdppHkoqMs_APXIf.Cfl8zb.08W_9IVJbyCO7.U0lYuRsnr_FyTrENDVvI-\",\r\n    \"fileKey\": \"sample.png\",\r\n    \"parts\": [\r\n        { \"PartNumber\": 1, \"ETag\": \"e038e2365aa8c4109e424bedb2b256b3\" }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api}}/{{env}}/finalize",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"{{env}}",
+						"finalize"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "api",
+			"value": "https://tj3rd82v0c.execute-api.ap-south-1.amazonaws.com",
+			"type": "default"
+		},
+		{
+			"key": "env",
+			"value": "dev",
+			"type": "default"
+		}
+	]
+}
