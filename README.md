@@ -19,6 +19,7 @@ functions:
 > Things to notes
 - The minimal multipart upload size is 5Mb (1), even if your total size is 100MB, each individual multipart upload (other than the last one) can't be smaller than 5MB. You probably want to use a "normal" upload, not a multipart upload (aka `parts: 1` when uploading files smaller than 5MB)
 
+- `--aws-s3-accelerate` Enables S3 Transfer Acceleration making uploading artifacts much faster. You can read more about it here. It requires additional s3:PutAccelerateConfiguration permissions. Note: When using Transfer Acceleration, additional data transfer charges may apply.
 ---
 
 ### 1. Initalize

@@ -3,6 +3,7 @@ import { secureHeaders } from '~core/middlewares/secure'
 
 import { bootstrap } from '@config/bootstrap'
 import * as UploadController from '@functions/upload/controller'
+import * as DownloadController from '@functions/download/controller'
 
 const app = express()
 
@@ -10,12 +11,14 @@ const app = express()
  * ? Middlewares
  */
 app.use(express.urlencoded({ extended: true, limit: '2mb' }))
-app.use(express.json({ limit: '5mb' }))
+app.use(express.json({ limit: '20mb' }))
 app.use(secureHeaders())
 
 /**
  * Routes
  */
+app.get('/download', DownloadController.downloadFile)
+
 app.post('/initalize', UploadController.initialize)
 app.post('/get-presigned-urls', UploadController.getPresignedUrls)
 app.post('/finalize', UploadController.finalize)

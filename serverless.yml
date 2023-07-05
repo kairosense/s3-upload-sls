@@ -1,8 +1,6 @@
 service: sls-upload-media
 frameworkVersion: '3'
 
-useDotenv: true
-
 provider:
   name: aws
   runtime: nodejs14.x
@@ -37,6 +35,12 @@ custom:
     minify: true
 
 functions:
+  download:
+    handler: src/handler.app
+    events:
+      - http:
+          path: /download
+          method: GET
   upload:
     handler: src/handler.app
     events:
