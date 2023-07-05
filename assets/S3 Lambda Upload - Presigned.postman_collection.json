@@ -163,6 +163,30 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "5. Download",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api}}/{{env}}/download?filename=sample.png",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"{{env}}",
+						"download"
+					],
+					"query": [
+						{
+							"key": "filename",
+							"value": "sample.png"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
