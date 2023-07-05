@@ -24,9 +24,9 @@ functions:
 
 ### 1. Initalize
 
-```http
-route - /initalize
-method - POST
+```
+@route - /initalize
+@method - POST
 ```
 
 ##### Request JSON
@@ -50,9 +50,9 @@ method - POST
 
 Use response of `initalize` api and send it to `get-presigned-url` with number of parts
 
-```http
-route - /get-presigned-urls
-method - POST
+```
+@route - /get-presigned-urls
+@method - POST
 ```
 
 ##### Request JSON
@@ -82,11 +82,10 @@ method - POST
 
 ### 3. Upload Files
 
-```http
-route - each-presigned-url-one-by-one
-method - PUT
-body - binary
-
+```
+@route - each-presigned-url-one-by-one
+@method - PUT
+@body - binary
 --data '@/Desktop/image-split/chunks/3.jpg'
 ```
 
@@ -126,9 +125,9 @@ Response Content
 
 ### 4. Finalize
 
-```http
-route - /finalize
-method - POST
+```
+@route - /finalize
+@method - POST
 ```
 
 ##### Request JSON
